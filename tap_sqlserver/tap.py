@@ -11,29 +11,29 @@ class Tapsqlserver(SQLTap):
     """sqlserver tap class."""
     name = "tap-sqlserver"
 
-    # TODO: Update this section with the actual config values you expect:
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "auth_token",
+            "server_name",
             th.StringType,
             required=True,
-            description="The token to authenticate against the API service"
+            description="The name of the sql server"
         ),
         th.Property(
-            "project_ids",
+            "database_name",
+            th.StringType,
+            required=True,
+            description="The name of the database"
+        ),
+        th.Property(
+            "schema_name",
+            th.StringType,
+            required=True,
+            description="The name of the database schema"
+        ),
+        th.Property(
+            "table_names",
             th.ArrayType(th.StringType),
             required=True,
-            description="Project IDs to replicate"
-        ),
-        th.Property(
-            "start_date",
-            th.DateTimeType,
-            description="The earliest record date to sync"
-        ),
-        th.Property(
-            "api_url",
-            th.StringType,
-            default="https://api.mysample.com",
-            description="The url for the API service"
+            description="The tables or views to replicate"
         ),
     ).to_dict()
