@@ -25,15 +25,9 @@ class Tapsqlserver(SQLTap):
             description="The name of the database"
         ),
         th.Property(
-            "schema_name",
+            "driver_name",
             th.StringType,
             required=True,
-            description="The name of the database schema"
-        ),
-        th.Property(
-            "table_names",
-            th.ArrayType(th.StringType),
-            required=True,
-            description="The tables or views to replicate"
+            description="The name of the driver to use"
         ),
     ).to_dict()

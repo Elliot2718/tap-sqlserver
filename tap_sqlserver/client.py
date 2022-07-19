@@ -13,13 +13,10 @@ class sqlserverConnector(SQLConnector):
 
     def get_sqlalchemy_url(cls, config: dict) -> str:
         """Concatenate a SQLAlchemy URL for use in connecting to the source."""
-        # TODO: Replace this with a valid connection string for your source:
         return (
-            f"awsathena+rest://{config['aws_access_key_id']}:"
-            f"{config['aws_secret_access_key']}@athena"
-            f".{config['aws_region']}.amazonaws.com:443/"
-            f"{config['schema_name']}?"
-            f"s3_staging_dir={config['s3_staging_dir']}"
+            f"mssql://{config["server_name"]}/{config["database_name"]}?"
+            f"driver={config["driver_name"]}&"
+            f"trusted_connection=yes&TrustServerCertificate=yes"
         )
 
     @staticmethod
